@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 import pdb
 import urllib.parse as urlparse
+import random
 from random import randint
 import time
 
@@ -9,7 +10,8 @@ import time
 class AutometicScript():
     def __init__(self):
         self.search_engine_url = 'http://www.google.de'
-        self.keyword = 'SEO Frankfurt'
+        #self.keyword = 'SEO Frankfurt'
+        self.keyword = ["SEO Frankfurt", "Suchmaschinenoptimierung Frankfurt", "SEO Rhein Main", "Seo & Suchmaschinenoptimierung Frankfurt"]
         self.page_number = 2
         self.url = 'http://www.suchmaschinen-optimierung-frankfurt.com/'
 
@@ -26,7 +28,7 @@ class AutometicScript():
 
         driver.get(self.search_engine_url)
         driver.find_element_by_name("q").is_displayed()
-        driver.find_element_by_name("q").send_keys(self.keyword)
+        driver.find_element_by_name("q").send_keys(random.choice(self.keyword))
         driver.find_element_by_name("btnG").click()
         driver.implicitly_wait(30)
 
@@ -70,7 +72,6 @@ ac = AutometicScript()
 
 while True:
     print("starting ....")
-    time.sleep(randint(0, 2))
+    time.sleep(randint(1000, 3500))
     ac.search_url()
 
-#http://blog.likewise.org/2013/04/webdriver-testing-with-python-and-ghostdriver/
